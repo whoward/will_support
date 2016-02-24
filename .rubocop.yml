@@ -1,0 +1,14 @@
+AllCops:
+  TargetRubyVersion: 2.3
+  
+# Double negation isn't that bad, especially since ruby doesn't really provide a better alternative
+Style/DoubleNegation:
+  Enabled: false
+
+# It's a nice goal to have documentation here but it shouldn't be up to rubocop to enforce it, InchCI is much better
+Style/Documentation:
+  Enabled: false
+
+# 80 is way too conservative - 120 is more fair
+Metrics/LineLength:
+  Max: 120
