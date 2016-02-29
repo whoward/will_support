@@ -12,3 +12,4 @@ gem 'rubocop'
 
 gem 'nokogiri'
 gem 'selenium-webdriver'
+gem 'deterministic'
