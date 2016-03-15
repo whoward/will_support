@@ -1,8 +1,8 @@
 # WillSupport
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/will_support`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+WillSupport is a collection of ruby modules, objects and refinements that I have found useful over the years.  There is
+no real focus on what is included - anything that I generally consider a 'utility' that doesn't really need to be it's 
+own gem goes in here.
 
 ## Installation
 
@@ -22,7 +22,77 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+By default no modules are loaded.  To use modules you must manually require them.
+
+### Curry Module
+```ruby
+require 'will_support/curry'
+```
+
+The Curry module allows you to call a method with fewer arguments than are required and returns a curried `proc` object 
+instead.  The curried `proc` object can then be called any number of times with the remaining arguments.  As this is a
+proc object this can be very powerful when used where the threequals (`===`) operator is used, such as in a `case/when`.
+
+#### Example:
+
+```ruby
+module Tests
+   extend WillSupport::Curry
+   
+   curry def integer?(x)
+     case x
+     when Fixnum then true
+     when String then x =~ /^\d+$/
+     else false
+     end
+   end
+   
+   curry def real?(x)
+    case x
+    when Fixnum, Float then true
+    when String then x =~ /^\d+(\.\d+)?$/
+    else false
+    end
+   end
+end
+
+# casting function, takes a numeric like argument and turns it into an integer.  Raises an ArgumentError if it cannot be casted.
+def Integer(value)
+  case value
+  when Test.integer? then value.to_i
+  when Test.real?
+    warn 'possible loss of precision'
+    value.to_i
+  else
+    raise ArgumentError, "Cannot cast #{value} to Integer"
+  end
+end
+```
+
+### Retry class
+```ruby
+  require 'will_support/retry'
+```
+
+TODO: write description
+
+### Selenium module
+
+The Selenium module requires you to also install the `selenium-webdriver` and `nokogiri` gems
+
+```ruby
+  require 'will_support/selenium'
+```
+
+### Service module
+
+The Service module requires you to also install the `deterministic` gem
+
+```ruby
+    require 'will_support/service'
+```
+
+TODO: write description
 
 ## Development
 
@@ -32,7 +102,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/will_support.
+Bug reports and pull requests are welcome on GitHub at https://github.com/whoward/will_support.
 
 
 ## License
