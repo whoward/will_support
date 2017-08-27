@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'page'
 
 module WillSupport
@@ -17,15 +19,15 @@ module WillSupport
         klass = const_get(class_name)
 
         klass.class_eval(&block)
-        
+
         klass
       end
-      
-      private 
-      
+
+      private
+
       # this is a cheap version of ActiveRecord's camelize function
       def camelize(string)
-        string.downcase.capitalize.gsub(/_([a-z])/) {|match| match[1].upcase }
+        string.downcase.capitalize.gsub(/_([a-z])/) { |match| match[1].upcase }
       end
     end
   end

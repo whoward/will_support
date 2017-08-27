@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 
 require_relative 'selenium/dsl'
 require_relative 'selenium/element'
