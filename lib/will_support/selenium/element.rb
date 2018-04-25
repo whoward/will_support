@@ -7,7 +7,7 @@ module WillSupport
     class Element
       extend Forwardable
 
-      def_delegators :fetch!, :text, :send_keys
+      def_delegators :fetch!, :click, :text, :send_keys, :clear
 
       def initialize(webdriver, type, value)
         @webdriver = webdriver

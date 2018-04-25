@@ -7,6 +7,8 @@ require_relative 'selector'
 module WillSupport
   module Selenium
     class Page
+      include DSL
+
       def self.inherited(base)
         base.extend(ClassMethods)
       end
